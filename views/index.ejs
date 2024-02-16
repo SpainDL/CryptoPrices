@@ -1,0 +1,22 @@
+<!-- default (index.ejs) view -->
+<%- include("partials/header.ejs") %>
+    <section>
+      <div class="card container-fluid">
+        <div class="card-body">
+          <div class="container-fluid image-div"></div>
+          <div class="card-text" style="text-align:center">
+            <hr>
+            <p>Welcome to Crypto Prices! This website monitors current prices of thee
+              popular crypto currency's allowing every site member to invest with knowlege. Please select a crypto currency above. Unsure where to begin,
+              click the link below to start your journey!
+             </p>
+             <hr>
+             <!-- set link to bitCoin route as default -->
+              <a class="btn btn-success" href="/bitCoin">Get Started</a>
+            </div>
+        </div>
+      </div>
+    </section>
+    <%- include("partials/footer.ejs") %>
+  </body>
+</html>

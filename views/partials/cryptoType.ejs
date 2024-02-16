@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <!-- link bootstrap cdn -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css"
+      integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd"
+      crossorigin="anonymous"
+    />
+    <!-- if crytoType was initialized and rendered load page contents -->
+    <% if(locals.cryptoType) {%>
+    <!-- set title to specific crypto initialized (btc,eth,doge) -->
+    <title><%=cryptoType%></title>
+  </head>
+  <body class="crypto-body">
+    <h1>Welcome to the <%=cryptoType%> Page!</h1>
+    <!-- load given crypto image -->
+    <div class="card mb-3 container-fluid crypto-card">
+      <% if(cryptoType === "bitcoin") {%>
+      <img
+        class="card-img-top"
+        src="/images/btc.jpg"
+        alt="Card image cap"
+      />
+      <%} else if(cryptoType ==="etherium") {%>
+      <img
+        class="crypto-image"
+        src="/images/eth.jpg"
+        alt="Card image cap"
+      />
+      <%} else { %>
+      <img
+        class="crypto-image"
+        src="/images/doge.jpg"
+        alt="Card image cap"
+      />
+      <%}%>
+      <div class="card-body">
+        <h5 class="card-title">Current Price</h5>
+        <!-- if crypto initialized (form button was hit) display message -->
+        <% if(locals.crypto) {%>
+        <p class="card-text">
+          The current value in USD of <%=cryptoType%> is: $<%=crypto%>. At any
+          time, feel free to update the price information by selecting get price.
+        </p>
+        <!-- else form button wasnt hit, dsplay default message -->
+        <%} else {%>
+        <p class="card-text">
+          To get the current value in USD of <%=cryptoType%> select get price.
+        </p>
+        <% } %>
+        <!-- post form and set route to crypto specified so you get specified crypto price -->
+        <form method="post">
+          <input
+            class="btn btn-success"
+            type="submit"
+            id="<%cryptoType%>"
+            formaction="/get-<%=cryptoType%>"
+            value="Get Price"
+          />
+        </form>
+        <!-- if crypto was intialized, get timestamp that button was pressed -->
+        <% if(locals.crypto){ %>
+        <p class="card-text">
+          <small class="text-muted">Last updated <%=Date()%></small>
+        </p>
+        <%}%>
+      </div>
+    </div>
+  </body>
+  <%}%>
+</html>
